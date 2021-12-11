@@ -1,21 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
 /************************************************** GLOBAL STYLES **************************************************/
 
 :root {
-    --main-black: rgb(36, 37, 37);
-    --main-white: rgb(255, 255, 255);
-    --main-grey: rgb(195, 195, 195);
-    --main-red: rgb(211, 27, 27);
-    --main-yellow: rgb(255, 255, 0);
-    --main-orange: rgb(233, 175, 16);
-    --main-violet: rgb(238, 73, 238);
-    --main-purple: rgb(102, 51, 153);
-    --trans-orange: rgba(233, 175, 16, 0.19);
-    --trans-purple: rgba(102, 51, 153, 0.13);
-    --trans-red: rgba(211, 27, 27, 0.15);
-    --main-spacing: 0.2rem;
-    --secondary-spacing: 0.1rem;
-    --main-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
-    --main-transition: all 0.4s ease;
+    --black: rgb(36, 37, 37);
+    --white: rgb(255, 255, 255);
+    --grey: rgb(195, 195, 195);
+    --red: rgb(211, 27, 27);
+    --yellow: rgb(255, 255, 0);
+    --orange: rgb(233, 175, 16);
+    --violet: rgb(238, 73, 238);
+    --purple: rgb(102, 51, 153);
+    --transp-orange: rgba(233, 175, 16, 0.19);
+    --transp-purple: rgba(102, 51, 153, 0.13);
+    --transp-red: rgba(211, 27, 27, 0.15);
+    --shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    --spacing: 0.1rem;
+    --spacing-2: 0.2rem;
+    --radius: 0.2rem;
+    --radius-2: 0.5rem;
+    --ease-trans: all 0.4s ease;
 }
 *, ::before, ::after {
     margin: 0;
@@ -23,20 +27,20 @@
     box-sizing: border-box;
 }
 *::selection {
-    background-color: var(--main-purple);
-    color: var(--main-white);
+    background-color: var(--purple);
+    color: var(--white);
 }
 html {
     scroll-behavior: smooth;
 }
 body {
-    color: var(--main-black);
-    font: 1rem 'Poppins', sans-serif;
+    color: var(--black);
+    font-family: 'Poppins', sans-serif;
 }
 h1, h2, h3, h4 {
     line-height: 1.1;
     text-transform: capitalize;
-    letter-spacing: var(--secondary-spacing);
+    letter-spacing: var(--spacing);
 }
 p {
     line-height: 1.5;
@@ -51,18 +55,19 @@ img {
     display: block;
 }
 button {
+    font-family: 'Poppins', sans-serif;
     cursor: pointer;
 }
 input {
     padding: 0.2rem 0.5rem;
-    border: 1px solid var(--main-purple);
-    border-radius: 0.2rem;
-    color: var(--main-black);
+    border: 1px solid var(--purple);
+    border-radius:var(--radius);
+    color: var(--black);
     font: 1rem 'Poppins', sans-serif;
 }
 input:focus {
     outline: none;
-    background-color: var(--trans-purple);
+    background-color: var(--transp-purple);
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -98,23 +103,27 @@ input[type='number'] {
 .button {
     display: inline-block;
     padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    box-shadow: var(--main-shadow);
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow);
     text-transform: uppercase;
-    letter-spacing: var(--secondary-spacing);
+    letter-spacing: var(--spacing);
     white-space: nowrap;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .button:hover {
     transform: scale(1.1);
 }
 .red {
-    background-color: var(--main-red);
-    color: var(--main-white);
+    background-color: var(--red);
+    color: var(--white);
 }
 .orange {
-    background-color: var(--main-orange);
-    color: var(--main-white);
+    background-color: var(--orange);
+    color: var(--white);
+}
+.disabled { 
+    opacity: 0.7;
+    pointer-events: none;
 }
 
 @keyframes appearance {
@@ -136,9 +145,9 @@ input[type='number'] {
     height: 100%;
     display: grid;
     place-items: center;
-    background-color: var(--main-white);
-    color: var(--main-orange);
-    transition: var(--main-transition);
+    background-color: var(--white);
+    color: var(--orange);
+    transition: var(--ease-trans);
     z-index: 999;
 }
 .preloader.hide {
@@ -156,7 +165,7 @@ input[type='number'] {
 .loading h2 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 2rem;
-    text-shadow: var(--main-shadow);
+    text-shadow: var(--shadow);
 }
 .loading span {
     width: 0.5rem;
@@ -164,8 +173,8 @@ input[type='number'] {
     display: block;
     margin-bottom: 0.2rem;
     border-radius: 50%;
-    background-color: var(--main-orange);
-    box-shadow: var(--main-shadow);
+    background-color: var(--orange);
+    box-shadow: var(--shadow);
     transform: scale(0) translateX(0);
     animation: loading 0.8s ease-in-out 0s infinite;
 }
@@ -191,7 +200,7 @@ header {
     position: relative;
     min-height: 100vh;
     overflow: hidden;
-    color: var(--main-white);
+    color: var(--white);
 }
 
 /********************************** NAV **********************************/
@@ -211,32 +220,32 @@ nav {
     display: none;
     border: none;
     background-color: inherit;
-    color: var(--main-white);
+    color: var(--white);
     font-size: 1.6rem;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
     z-index: 101;
 }
 .show .menu-toggle-btn {
-    color: var(--main-yellow);
+    color: var(--yellow);
     transform: rotate(90deg);
 }
 .logo {
     display: flex;
     align-items: center;
     font-size: 1.6rem;
-    letter-spacing: var(--main-spacing);
+    letter-spacing: var(--spacing-2);
     text-transform: uppercase;
     user-select: none;
     z-index: 101;
 }
 .logo-item {
     margin-right: 0.2rem;
-    color: var(--main-yellow);
+    color: var(--yellow);
     font-size: 1.8rem;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .show .logo-item  {
-    color: var(--main-violet);
+    color: var(--violet);
 }
 .nav-menu {
     display: flex;
@@ -244,30 +253,30 @@ nav {
     z-index: 100;
 }
 .nav-menu a {
-    color: var(--main-white);
+    color: var(--white);
     font-size: 1.2rem;
     text-transform: capitalize;
-    letter-spacing: var(--main-spacing);
-    transition: var(--main-transition);
+    letter-spacing: var(--spacing-2);
+    transition: var(--ease-trans);
 }
 .nav-menu a:hover {
-    color: var(--main-yellow);
+    color: var(--yellow);
 }
 .nav-menu li:nth-child(even) a:hover {
-    color: var(--main-violet);
+    color: var(--violet);
 }
 .open-cart-btn-wrapper {
     position: relative;
     z-index: 101;
 }
 .open-cart-btn {
-    color: var(--main-white);
+    color: var(--white);
     font-size: 1.6rem;
     line-height: 1;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .open-cart-btn:hover {
-    color: var(--main-yellow);
+    color: var(--yellow);
 }
 .cart-items-counter {
     position: absolute;
@@ -278,8 +287,8 @@ nav {
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background-color: var(--main-violet);
-    color: var(--main-white);
+    background-color: var(--violet);
+    color: var(--white);
     font-size: 1rem;
 }
 
@@ -299,7 +308,7 @@ nav {
         padding-top: 5rem;
         background-color: rgba(0, 0, 0, 0.9);
         transform: translateX(-100%);
-        transition: var(--main-transition);
+        transition: var(--ease-trans);
     }
     .show .nav-menu {
         transform: translateX(0);
@@ -351,7 +360,7 @@ nav {
     place-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .slide.active {
     opacity: 1;
@@ -367,32 +376,32 @@ nav {
     max-width: 800px;
     width: 80vw;
     padding: 2rem;
-    border: 2px solid var(--main-yellow);
-    border-radius: 0.5rem;
+    border: 2px solid var(--yellow);
+    border-radius: var(--radius-2);
     z-index: 1;
 }
 .slide:nth-child(even) .slide-content {
-    border-color: var(--main-violet);
+    border-color: var(--violet);
 }
 .slide-content h2 {
     margin-bottom: 1.5rem;
     font-size: 2.5rem;
-    letter-spacing: var(--main-spacing);
+    letter-spacing: var(--spacing-2);
 }
 .slide-content p {
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
-    letter-spacing: var(--secondary-spacing);
+    letter-spacing: var(--spacing);
 }
 .slide-content a {
-    border-radius: 0.2rem;
-    background-color: var(--main-yellow);
-    color: var(--main-black);
+    border-radius: var(--radius);
+    background-color: var(--yellow);
+    color: var(--black);
     font-size: 1.2rem;
-    letter-spacing: var(--main-spacing);
+    letter-spacing: var(--spacing-2);
 }
 .slide:nth-child(even) .slide-content a {
-    background-color: var(--main-violet);
+    background-color: var(--violet);
 }
 .slider-controls {
     position: absolute;
@@ -406,10 +415,10 @@ nav {
     margin: 0 -5rem;
     border: none;
     background-color: inherit;
-    color: var(--main-white);
+    color: var(--white);
     opacity: 0.5;
     font-size: 2.5rem;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .slider-controls > *:hover {
     opacity: 1;
@@ -429,17 +438,17 @@ nav {
     height: 1rem;
     margin: 0 0.5rem;
     border-radius: 50%;
-    background-color: var(--main-white);
+    background-color: var(--white);
     opacity: 0.5;
     cursor: pointer;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .slider-circles > *.active {
-    background-color: var(--main-yellow);
+    background-color: var(--yellow);
     opacity: 1;
 }
 .slider-circles > *:nth-child(even).active {
-    background-color: var(--main-violet);
+    background-color: var(--violet);
 }
 
 @media screen and (max-width: 1024px) {
@@ -494,31 +503,31 @@ nav {
 }
 .page-header nav {
     position: static;
-    background-color: var(--main-black);
+    background-color: var(--black);
 }
-.page-hero {
+.stages {
     height: 2rem;
     display: grid;
     align-items: center;
-    background-color: var(--main-orange);
-    color: var(--main-black);
+    background-color: var(--orange);
+    color: var(--black);
     font-size: 1rem;
-    letter-spacing: var(--secondary-spacing);
+    letter-spacing: var(--spacing);
 }
-.page-hero div {
+.stages div {
     overflow-x: auto;
     white-space: nowrap;
 }
-.page-hero a {
+.stages a {
     padding: 0 0.2rem;
-    border-radius: 0.2rem;
-    color: var(--main-black);
+    border-radius: var(--radius);
+    color: var(--black);
     text-transform: capitalize;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
-.page-hero a:hover {
-    background-color: var(--main-purple);
-    color: var(--main-white);
+.stages a:hover {
+    background-color: var(--purple);
+    color: var(--white);
 }
 
 /************************************************** SECTION **************************************************/
@@ -530,12 +539,12 @@ nav {
     margin-bottom: 4rem;
     text-align: center;
     font-size: 2.5rem;
-    letter-spacing: var(--main-spacing);
+    letter-spacing: var(--spacing-2);
 }
 .title h2 > span {
     display: inline-block;
     padding-bottom: 0.4rem;
-    border-bottom: 5px solid var(--main-purple);
+    border-bottom: 5px solid var(--purple);
 }
 
 /********************************** PRODUCTS **********************************/
@@ -553,10 +562,10 @@ nav {
 .product-image img {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--main-grey);
-    border-radius: 0.5rem;
+    border: 1px solid var(--grey);
+    border-radius: var(--radius-2);
     object-fit: cover;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .product-image:hover img {
     opacity: 0.8;
@@ -571,24 +580,24 @@ nav {
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background-color: var(--main-purple);
-    color: var(--main-white);
+    background-color: var(--purple);
+    color: var(--white);
     font-size: 1.5rem;
     transform: scale(0);
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .product-image:hover .product-btn {
     transform: scale(1);
 }
 .product h3, .product h4 {
     margin-bottom: 0.5rem;
-    color: var(--main-purple);
+    color: var(--purple);
     text-align: center;
     font-size: 1rem;
 }
 .product h4 {
     margin-bottom: 0;
-    color: var(--main-red);
+    color: var(--red);
 }
 .no-products {
     text-align: center;
@@ -625,27 +634,27 @@ nav {
 }
 .search-input {
     width: 100%;
-    border: 2px solid var(--main-orange);
+    border: 2px solid var(--orange);
 }
 .search-input:focus {
-    background-color: var(--trans-orange);
+    background-color: var(--transp-orange);
 }
 .filter-btns > * {
     display: block;
     margin-bottom: 0.5rem;
     padding: 0.2rem 0.5rem;
-    border: 1px solid var(--main-red);
-    border-radius: 0.3rem;
+    border: 1px solid var(--red);
+    border-radius: var(--radius);
     background-color: inherit;
-    color: var(--main-black);
-    font: 0.9rem 'Poppins', sans-serif;
-    letter-spacing: var(--secondary-spacing);
+    color: var(--black);
+    font-size: 0.9rem;
+    letter-spacing: var(--spacing);
     text-transform: capitalize;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .filter-btns > *:hover {
-    background-color: var(--main-red);
-    color: var(--main-white);
+    background-color: var(--red);
+    color: var(--white);
 }
 .price-form span {
     margin-right: 0.2rem;
@@ -675,7 +684,7 @@ nav {
     opacity: 1;
 }
 .product-image .slider-controls > * {
-    color: var(--main-grey);
+    color: var(--grey);
 }
 .product-image:hover .slider-controls > * {
     margin: 0 0.5rem;
@@ -688,15 +697,16 @@ nav {
 .images-wrapper img {
     width: 5rem;
     height: 5rem;
-    border: 1px solid var(--main-grey);
-    border-radius: 0.2rem;
+    border: 1px solid var(--grey);
+    border-radius: var(--radius);
     object-fit: cover;
     opacity: 0.7;
     cursor: pointer;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .images-wrapper img.active {
     opacity: 1;
+    pointer-events: none;
 }
 .images-wrapper img:hover {
     opacity: 1;
@@ -707,12 +717,12 @@ nav {
 }
 .product-description h3 {
     margin-bottom: 1.5rem;
-    color: var(--main-red);
+    color: var(--red);
     font-size: 1.4rem;
 }
 .product-features i {
     margin-right: 0.5rem;
-    color: var(--main-purple);
+    color: var(--purple);
 }
 .product-description h4 {
     margin: 1.5rem 0;
@@ -733,7 +743,7 @@ nav {
 .decrease-amount-btn, .increase-amount-btn {
     border: none;
     background-color: inherit;
-    color: var(--main-black);
+    color: var(--black);
     font-size: 1rem;
 }
 .product-benefits {
@@ -743,7 +753,7 @@ nav {
     column-gap: 1rem;
     margin: 1.5rem 0;
     padding: 0.5rem 0;
-    border: 1px solid var(--main-grey);
+    border: 1px solid var(--grey);
     border-left: 0;
     border-right: 0;
 }
@@ -780,21 +790,24 @@ nav {
     grid-gap: 2rem;
     align-items: center;
     padding: 1.5rem 0;
-    border-bottom: 1px solid var(--main-grey);
+    border-bottom: 1px solid var(--grey);
     overflow-x: auto;
 }
 .cart-item:first-child {
-    border-top: 1px solid var(--main-grey); 
+    border-top: 1px solid var(--grey); 
 }
 .cart-item img {
     width: 5rem;
     height: 5rem;
-    border: 1px solid var(--main-grey);
-    border-radius: 0.2rem;
+    border: 1px solid var(--grey);
+    border-radius: var(--radius);
     object-fit: cover;
 }
 .cart-item h3, .cart-item h4 {
     text-align: left;
+}
+.cart-item a {
+    color: var(--purple);
 }
 .cart-item .product-amount-btns {
     margin: 0;
@@ -809,12 +822,12 @@ nav {
 .remove-item-btn {
     border: none;
     background-color: inherit;
-    color: var(--main-red);
+    color: var(--red);
     font-size: 1.4rem;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .remove-item-btn:hover {
-    color: var(--main-orange);
+    color: var(--orange);
 }
 .cart-total {
     display: flex;
@@ -823,7 +836,7 @@ nav {
 }
 .cart-total div {
     padding: 1.5rem;
-    border: medium double var(--main-orange);
+    border: medium double var(--orange);
 }
 .cart-total h3, .cart-total h4 {
     display: grid;
@@ -834,13 +847,13 @@ nav {
 }
 .cart-total h3 {
     padding-top: 1.5rem;
-    border-top: 1px solid var(--main-orange);
+    border-top: 1px solid var(--orange);
 }
 .cart-total span {
     text-align: right;
 }
 .cart-total h3 span {
-    color: var(--main-red);
+    color: var(--red);
 }
 
 @media screen and (max-width: 500px) {
@@ -890,8 +903,8 @@ nav {
 .text-content a {
     position: relative;
     margin: 0 0.2rem;
-    color: var(--main-red);
-    letter-spacing: var(--secondary-spacing);
+    color: var(--red);
+    letter-spacing: var(--spacing);
 }
 .text-content a::before {
     content: '';
@@ -900,8 +913,8 @@ nav {
     left: 0;
     width: 0;
     height: 100%;
-    background-color: var(--trans-red);
-    transition: var(--main-transition);
+    background-color: var(--transp-red);
+    transition: var(--ease-trans);
 }
 .text-content a:hover::before {
     left: unset;
@@ -916,10 +929,10 @@ nav {
 }
 .benefit {
     padding: 1rem;
-    border-radius: 0.5rem;
-    background-color: var(--trans-purple);
+    border-radius: var(--radius-2);
+    background-color: var(--transp-purple);
     text-align: center;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
 }
 .benefit:hover {
     transform: scale(1.05);
@@ -931,26 +944,26 @@ nav {
     place-items: center;
     margin: 0 auto 1rem auto;
     border-radius: 50%;
-    background-color: var(--main-white);
-    color: var(--main-purple);
+    background-color: var(--white);
+    color: var(--purple);
     font-size: 4rem;
 }
 .benefit h4 {
     margin-bottom: 0.5rem;
-    color: var(--main-purple);
+    color: var(--purple);
     font-style: italic;
 }
 .benefit:nth-child(1) {
-    background-color: var(--trans-orange);
+    background-color: var(--transp-orange);
 }
 .benefit:nth-child(1) div, .benefit:nth-child(1) h4 {
-    color: var(--main-orange);
+    color: var(--orange);
 }
 .benefit:nth-child(3) {
-    background-color: var(--trans-red);
+    background-color: var(--transp-red);
 }
 .benefit:nth-child(3) div, .benefit:nth-child(3) h4 {
-    color: var(--main-red);
+    color: var(--red);
 }
 .brands {
     display: grid;
@@ -966,8 +979,8 @@ nav {
 /************************************************** FOOTER **************************************************/
 
 footer {
-    background-color: var(--main-black);
-    color: var(--main-white);
+    background-color: var(--black);
+    color: var(--white);
 }
 footer .logo {
     justify-content: center;
@@ -978,50 +991,55 @@ footer .logo {
     justify-content: center;
 }
 .footer-menu a {
-    color: var(--main-white);
+    color: var(--white);
     padding: 0 1rem;
-    border-right: 2px solid var(--main-white);
+    border-right: 2px solid var(--white);
     font-size: 1.2rem;
     text-transform: capitalize;
-    letter-spacing: var(--main-spacing);
-    transition: var(--main-transition);
+    letter-spacing: var(--spacing-2);
+    transition: var(--ease-trans);
 }
 .footer-menu li:first-child a {
-    border-left: 2px solid var(--main-white);
+    border-left: 2px solid var(--white);
 }
 .footer-menu a:hover {
-    color: var(--main-yellow);
+    color: var(--yellow);
 }
 .footer-menu li:nth-child(even) a:hover {
-    color: var(--main-violet);
+    color: var(--violet);
 }
 .shopping-cart {
+    position: relative;
     width: 8rem;
     height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2rem auto;
-    border: 1px solid var(--main-white);
+    border: 1px solid var(--white);
     border-radius: 0.4rem;
-    background-color: var(--main-black);
-    color: var(--main-white);
+    color: var(--white);
     font-size: 1.4rem;
-    letter-spacing: var(--secondary-spacing);
-    transition: var(--main-transition);
+    letter-spacing: var(--spacing);
+    transition: var(--ease-trans);
 }
 .shopping-cart i {
     margin-right: 0.5rem;
 }
+.shopping-cart .cart-items-counter {
+    top: -0.6rem;
+    left: unset;
+    right: -0.5rem;
+}
 .shopping-cart:hover {
-    color: var(--main-violet);
-    border-color: var(--main-violet);
+    color: var(--violet);
+    border-color: var(--violet);
 }
 footer p {
     text-align: center;
     font-size: 1.2rem;
     font-style: italic;
-    letter-spacing: var(--secondary-spacing);
+    letter-spacing: var(--spacing);
 }
 
 @media screen and (max-width: 400px) {
@@ -1045,12 +1063,12 @@ footer p {
     display: grid;
     place-items: center;
     border: none;
-    border-radius: 0.5rem;
-    background-color: var(--main-orange);
-    color: var(--main-white);
-    box-shadow: var(--main-shadow);
+    border-radius: var(--radius);
+    background-color: var(--orange);
+    color: var(--white);
+    box-shadow: var(--shadow);
     font-size: 1.5rem;
-    transition: var(--main-transition);
+    transition: var(--ease-trans);
     animation: scaling 2s linear 0s infinite;
 }
 .scroll-top-btn.show {
@@ -1072,6 +1090,6 @@ footer p {
         left: -25%;
         width: 2rem;
         height: 2rem;
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 }

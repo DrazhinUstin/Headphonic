@@ -1,4 +1,4 @@
-import {getStorageItem, setDate, hidePreloader} from '../modules/utils.js';
+import {getStorageItem, setDate, hidePreloader, displayError} from '../modules/utils.js';
 import displayProducts from '../modules/displayProducts.js';
 import {countCartItems} from '../modules/cart/setupCart.js';
 import setSidebar from '../modules/setSidebar.js';
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return value;
     }, 0);
     if (store.length === 0) {
-        displayProducts();
+        displayError(404);
     } else {
         displayProducts(store);
         setBrandsFilter(store, maxPrice);

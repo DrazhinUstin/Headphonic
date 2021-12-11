@@ -1,4 +1,4 @@
-import {getStorageItem, setDate, hidePreloader} from '../modules/utils.js';
+import {getStorageItem, setDate, hidePreloader, displayError} from '../modules/utils.js';
 import displayProduct from '../modules/displayProduct.js';
 import {countCartItems} from '../modules/cart/setupCart.js';
 import addToCartLogic from '../modules/cart/addToCartLogic.js';
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = window.location.search.slice(4);
     const singleProduct = store.find(product => product.id === id);
     if (!singleProduct) {
-        displayProduct();
+        displayError(404);
     } else {
         displayProduct(singleProduct);
         addToCartLogic(cart, singleProduct);

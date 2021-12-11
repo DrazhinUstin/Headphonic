@@ -1,12 +1,7 @@
-import {getElement, formatPrice, displayError} from './utils.js';
+import {getElement, formatPrice} from './utils.js';
 
 const displayProducts = (products) => {
-    // Check if there is no products
-    if (!products) {
-        displayError();
-        return;
-    }
-    // If products exist, get products container
+    // Products container
     const productsDOM = getElement('.products');
     // Add products to DOM
     productsDOM.innerHTML = products.map(product => {

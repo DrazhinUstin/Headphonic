@@ -36,20 +36,28 @@ const getElements = (selector) => {
 // Set date
 const setDate = () => {
     const year = new Date().getFullYear();
-    document.querySelector('.date').textContent = year;
+    getElement('.date').textContent = year;
 };
 // Hide preloader
 const hidePreloader = () => {
-    const preloader = document.querySelector('.preloader');
+    const preloader = getElement('.preloader');
     preloader.classList.add('hide');
+    preloader.addEventListener('transitionend', () => preloader.remove());
 };
 // Display error message
-const displayError = () => {
-    document.querySelector('.section.center').innerHTML = `
+const displayError = (key) => {
+    let error;    
+    if (key === 'empty_cart') {
+        error = {message: 'Your cart is empty!', image: 'empty_box', link: {href: 'products.html', text: 'Fill it now'}};
+    } else if (key === 404) {
+        error = {message: 'Oops! Something went wrong...', image: 'UFO', link: {href: 'index.html', text: 'Back home'}};
+    } else return;
+    const {message, image, link: {href, text}} = error;
+    getElement('.section.center').innerHTML = `
         <div class="error-wrapper">
-            <h2>Oops! Something went wrong...</h2>
-            <img src="./images/UFO.svg" alt="UFO" />
-            <a href="index.html" class="red button">Back home</a>
+            <h2>${message}</h2>
+            <img src="./images/${image}.svg" alt="${image}" />
+            <a href="${href}" class="red button">${text}</a>
         </div>`;
 };
 

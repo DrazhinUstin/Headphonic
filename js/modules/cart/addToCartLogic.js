@@ -1,20 +1,24 @@
 import { getElement, setStorageItem } from "../utils.js";
 
 const addToCartLogic = (cart, product) => {
-    // Product amount
+    // DOM elements
+    const addToCartBtn = getElement('.red.button');
+    const amountBtnsDOM = getElement('.product-amount-btns');
     const amountDOM = getElement('.product-amount');
+    // Check if product is already in cart
+    const inCart = cart.find(cartItem => cartItem.id === product.id);
+    if (inCart) {
+        addToCartBtn.classList.add('disabled');
+        addToCartBtn.textContent = 'in cart';
+        amountBtnsDOM.classList.add('disabled');
+        amountDOM.textContent = inCart.amount;
+        return;
+    }
+    // If not, set amount value
     const maxAmount = product.maxAmount;
     let amount = +amountDOM.textContent;
-    // Check if product is already in cart
-    const inCart = cart.find(cartItem => cartItem.id === product.id) ? true : false;
-    if (inCart) {
-        getElement('.red.button').textContent = 'in cart';
-        getElement('.product-amount-btns').style.opacity = '0.7';
-        getElement('.product-benefits').style.opacity = '0.7';
-    }
-    // Product amount switcher
-    getElement('.product-amount-btns').addEventListener('click', event => {    
-        if (inCart) return;    
+    // Set amount listener
+    amountBtnsDOM.addEventListener('click', event => {      
         if (event.target.closest('.increase-amount-btn')) {
             amount++;
             if (amount > maxAmount) amount = maxAmount;
@@ -26,9 +30,8 @@ const addToCartLogic = (cart, product) => {
             amountDOM.textContent = amount;
         }
     });
-    // Add to cart
-    getElement('.red.button').addEventListener('click', () => {
-        if (inCart) return;
+    // Set add to cart listener
+    addToCartBtn.addEventListener('click', () => {
         const cartItem = {...product, amount};
         cart.push(cartItem);
         setStorageItem('cart', cart);

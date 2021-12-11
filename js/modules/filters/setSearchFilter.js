@@ -2,7 +2,7 @@ import displayProducts from "../displayProducts.js";
 import {getElement, getElements} from "../utils.js";
 
 const setSearchFilter = (products, maxPrice) => {
-    // Search input element
+    // Search input
     const search = getElement('.search-input');
     // Add event listener
     search.addEventListener('input', () => {
@@ -10,13 +10,9 @@ const setSearchFilter = (products, maxPrice) => {
         if (!value) {
             displayProducts(products);
         } else {
-            // Filtering products
-            const newProducts = products.filter(product => {
-                if (product.title.toUpperCase().startsWith(value)) {
-                    return product;
-                }
-            });
-            // Updating DOM
+            // Filter products
+            const newProducts = products.filter(product => product.title.toUpperCase().startsWith(value));
+            // Update store
             if (newProducts.length === 0) {
                 getElement('.products').innerHTML = '<p class="no-products">Sorry, but there are no such products &#128560;</p>';
             } else {

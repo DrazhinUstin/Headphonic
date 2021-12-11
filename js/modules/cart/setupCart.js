@@ -1,12 +1,11 @@
-import {getElement, getElements, formatPrice, setStorageItem} from '../utils.js';
-import displayCart from '../cart/displayCart.js';
+import {getElement, getElements, formatPrice, setStorageItem, displayError} from '../utils.js';
 
 const setupCart = (cart) => {
     // Clear cart
     getElement('.clear-cart-btn').addEventListener('click', event => {
         event.preventDefault();
         cart = [];
-        displayCart(cart);
+        displayError('empty_cart');
         countCartItems(cart);
         setStorageItem('cart', cart);
     });
@@ -15,17 +14,13 @@ const setupCart = (cart) => {
         removeBtn.addEventListener('click', event => {
             const id = event.currentTarget.dataset.id;
             cart = cart.filter(cartItem => cartItem.id !== id);
-            setCartTotal(cart);
             countCartItems(cart);
+            countCartTotal(cart);
             setStorageItem('cart', cart);
-            if (cart.length !== 0) {
-                event.currentTarget.parentElement.remove();
-            } else {
-                displayCart(cart);
-            }
+            cart.length !== 0 ? event.currentTarget.parentElement.remove() : displayError('empty_cart');
         });
     });
-    // Cart item amount switcher
+    // Switch cart item amount
     getElement('.cart').addEventListener('click', event => {
         if (event.target.closest('.increase-amount-btn')) {
             const target = event.target.closest('.increase-amount-btn');
@@ -35,7 +30,7 @@ const setupCart = (cart) => {
             if (cartItem.amount > cartItem.maxAmount) cartItem.amount = cartItem.maxAmount;
             target.previousElementSibling.textContent = cartItem.amount;
             countCartItems(cart);
-            setCartTotal(cart);
+            countCartTotal(cart);
             setStorageItem('cart', cart);
         }
         if (event.target.closest('.decrease-amount-btn')) {
@@ -46,20 +41,21 @@ const setupCart = (cart) => {
             if (cartItem.amount < 1) cartItem.amount = 1;
             target.nextElementSibling.textContent = cartItem.amount;
             countCartItems(cart);
-            setCartTotal(cart);
+            countCartTotal(cart);
             setStorageItem('cart', cart);
         }
     });
-    // Set cart total
-    function setCartTotal (cart) {
+
+    function countCartTotal (cart) {
         const cartTotal = cart.reduce((total, cartItem) => {
             return total += cartItem.amount * cartItem.price;
         }, 0);
         getElement('.cart-total h4 span').textContent = formatPrice(cartTotal);
         getElement('.cart-total h3 span').textContent = formatPrice(cartTotal);
     }
-    setCartTotal(cart);
-    // Set cart items counter
+
+    //Initial count 
+    countCartTotal(cart);
     countCartItems(cart);
 };
 
@@ -67,7 +63,7 @@ const countCartItems = (cart) => {
     const totalAmount = cart.reduce((total, cartItem) => {
         return total += cartItem.amount;
     }, 0);
-    getElement('.cart-items-counter').textContent = totalAmount;
+    getElements('.cart-items-counter').forEach(elem => elem.textContent = totalAmount);
 };
 
 export {setupCart, countCartItems};

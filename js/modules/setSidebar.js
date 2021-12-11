@@ -1,11 +1,11 @@
 import {getElement, getElements} from './utils.js';
 
 const setSidebar = () => {
-    // Variables
+    // DOM elements
     const nav = getElement('.nav-container');
     const navLinks = getElements('.nav-menu a');
     const toggleBtn = getElement('.menu-toggle-btn');
-    // Event listener
+    // Open/close sidebar
     toggleBtn.addEventListener('click', () => {
         nav.classList.toggle('show');
         if (nav.classList.contains('show')) {
@@ -15,9 +15,7 @@ const setSidebar = () => {
             });
         } else {
             document.body.style.overflow = '';
-            navLinks.forEach(link => {
-                link.style.animation = '';
-            });
+            navLinks.forEach(link => link.style.animation = '');
         }
     });
 };
