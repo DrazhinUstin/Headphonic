@@ -1,10 +1,9 @@
 import fetchProducts from './modules/fetchProducts.js';
-import {getStorageItem, setStorageItem, setDate, hidePreloader} from './modules/utils.js';
+import {getStorageItem, setStorageItem, hidePreloader} from './modules/utils.js';
 import displayProducts from './modules/displayProducts.js';
 import {countCartItems} from './modules/cart/setupCart.js';
 import setHeroSlider from './modules/setHeroSlider.js';
-import setSidebar from './modules/setSidebar.js';
-import setScrollBtn from './modules/setScrollBtn.js';
+import setupPage from './modules/setupPage.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const store = await fetchProducts();
@@ -14,9 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     countCartItems(cart);
     setStorageItem('store', store);
     setHeroSlider();
-    setSidebar();
-    setScrollBtn();
-    setDate();
+    setupPage();
 });
 
 window.addEventListener('load', hidePreloader);

@@ -1,8 +1,7 @@
-import {getStorageItem, setDate, hidePreloader, displayError} from '../modules/utils.js';
+import {getStorageItem, hidePreloader, displayError} from '../modules/utils.js';
 import displayCart from '../modules/cart/displayCart.js';
 import {setupCart, countCartItems} from '../modules/cart/setupCart.js';
-import setSidebar from '../modules/setSidebar.js';
-import setScrollBtn from '../modules/setScrollBtn.js';
+import setupPage from '../modules/setupPage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const cart = getStorageItem('cart');
@@ -13,9 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayCart(cart);
         setupCart(cart);
     }
-    setSidebar();
-    setScrollBtn();
-    setDate();
+    setupPage();
 });
 
 window.addEventListener('load', hidePreloader);

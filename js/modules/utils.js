@@ -33,11 +33,6 @@ const getElements = (selector) => {
         return `Please, check out your selector ${selector}. There are no such elements in DOM`;
     }
 };
-// Set date
-const setDate = () => {
-    const year = new Date().getFullYear();
-    getElement('.date').textContent = year;
-};
 // Hide preloader
 const hidePreloader = () => {
     const preloader = getElement('.preloader');
@@ -61,4 +56,4 @@ const displayError = (key) => {
         </div>`;
 };
 
-export {setStorageItem, getStorageItem, formatPrice, getElement, getElements, setDate, hidePreloader, displayError};
+export {setStorageItem, getStorageItem, formatPrice, getElement, getElements, hidePreloader, displayError};

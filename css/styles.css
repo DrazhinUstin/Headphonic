@@ -6,6 +6,7 @@
     --black: rgb(36, 37, 37);
     --white: rgb(255, 255, 255);
     --grey: rgb(195, 195, 195);
+    --dark-grey: rgb(104 102 102);
     --red: rgb(211, 27, 27);
     --yellow: rgb(255, 255, 0);
     --orange: rgb(233, 175, 16);
@@ -104,10 +105,11 @@ input[type='number'] {
     display: inline-block;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-2);
+    background-color: var(--purple);
+    color: var(--white);
     box-shadow: var(--shadow);
     text-transform: uppercase;
     letter-spacing: var(--spacing);
-    white-space: nowrap;
     transition: var(--ease-trans);
 }
 .button:hover {
@@ -115,11 +117,9 @@ input[type='number'] {
 }
 .red {
     background-color: var(--red);
-    color: var(--white);
 }
 .orange {
     background-color: var(--orange);
-    color: var(--white);
 }
 .disabled { 
     opacity: 0.7;
@@ -652,6 +652,11 @@ nav {
     text-transform: capitalize;
     transition: var(--ease-trans);
 }
+.filter-btns > *.active {
+    background-color: var(--red);
+    color: var(--white);
+    pointer-events: none; 
+}
 .filter-btns > *:hover {
     background-color: var(--red);
     color: var(--white);
@@ -661,6 +666,21 @@ nav {
 }
 .price-input {
     width: 4rem;  
+}
+#reset-filters-btn {
+    margin-top: 1.25rem;
+    border-radius: var(--radius);
+    background-color: var(--grey);
+    box-shadow: unset;
+    pointer-events: none;
+}
+#reset-filters-btn.active {
+    background-color: var(--dark-grey);
+    box-shadow: var(--shadow);
+    pointer-events: unset;
+}
+#reset-filters-btn:hover {
+    transform: unset;
 }
 
 @media screen and (max-width: 768px) {
@@ -692,7 +712,7 @@ nav {
 .images-wrapper {
     display: flex;
     column-gap: 1rem;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 .images-wrapper img {
     width: 5rem;
