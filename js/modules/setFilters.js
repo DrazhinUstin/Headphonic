@@ -1,14 +1,20 @@
 import {getElement, getElements} from "./utils.js";
 import displayProducts from "./displayProducts.js";
+import Pagination from './Pagination.js';
 
 const setFilters = (products) => {
     const brandsDOM = getElement('.filter-btns');
     const priceFilters = getElements('.price-input');
     const titleFilter = getElement('.search-input');
     const resetBtn = getElement('#reset-filters-btn');
-    // Setup initial filter values
+    // Initial filters setup
     const maxPrice = setMinMaxPrice();
     displayBrands();
+    // Initial pagination setup
+    const pagination = new Pagination(9);
+    pagination.setListener();
+    // Initial launch
+    applyFilters();
 
     brandsDOM.addEventListener('click', event => {
         if (event.target.tagName !== 'BUTTON') return;
@@ -35,7 +41,12 @@ const setFilters = (products) => {
         if (!newProducts.length) {
             getElement('.products').innerHTML = '<p class="no-products">Sorry, but there are no such products &#128560;</p>';
         } else {
-            displayProducts(newProducts);
+            if (newProducts.length > 9) {
+                pagination.paginate(newProducts);
+            } else {
+                displayProducts(newProducts);
+                pagination.hide();
+            }
         }
         trackResetBtn();
     }

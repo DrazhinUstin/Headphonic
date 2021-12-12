@@ -682,6 +682,44 @@ nav {
 #reset-filters-btn:hover {
     transform: unset;
 }
+.pagination {
+    display: none;
+}
+.pagination.active {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-top: 4rem;
+}
+.pagination span {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: var(--purple);
+    color: var(--white);
+    opacity: 0.6;
+    text-align: center;
+    line-height: 2rem;
+    cursor: pointer;
+    transition: var(--ease-trans);
+}
+.pagination span:hover {
+    opacity: 1;
+}
+.pagination span.active {
+    opacity: 1;
+    pointer-events: none;
+}
+.pagination button {
+    border: none;
+    background-color: inherit;
+    color: var(--purple);
+    font-size: 1.4rem;
+    line-height: 1;
+}
 
 @media screen and (max-width: 768px) {
     .products-container {
