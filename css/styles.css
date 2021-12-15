@@ -993,7 +993,7 @@ nav {
     transition: var(--ease-trans);
 }
 .benefit:hover {
-    transform: scale(1.05);
+    transform: translateY(-0.5rem);
 }
 .benefit div {
     width: 8rem;

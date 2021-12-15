@@ -1,4 +1,4 @@
-import {getElement, getElements} from "./utils.js";
+import {getElement, getElements, getSession, setSession} from "./utils.js";
 import displayProducts from "./displayProducts.js";
 import Pagination from './Pagination.js';
 
@@ -11,10 +11,13 @@ const setFilters = (products) => {
     const maxPrice = setMinMaxPrice();
     displayBrands();
     // Initial pagination setup
-    const pagination = new Pagination(9);
+    const amounPerPage = 9;
+    const pagination = new Pagination(amounPerPage);
     pagination.setListener();
     // Initial launch
-    applyFilters();
+    const session = getSession('products');
+    if (session.filters) restoreFiltersState();
+    applyFilters(session.step || 0);
 
     brandsDOM.addEventListener('click', event => {
         if (event.target.tagName !== 'BUTTON') return;
@@ -24,31 +27,31 @@ const setFilters = (products) => {
     });
 
     priceFilters.forEach(filter => {
-        filter.addEventListener('change', applyFilters);
+        filter.addEventListener('change', () => applyFilters());
         filter.addEventListener('change', () => {
             if (!filter.value) filter.value = +filter.value;
         });
     });
 
-    titleFilter.addEventListener('input', applyFilters);
+    titleFilter.addEventListener('input', () => applyFilters());
 
     resetBtn.addEventListener('click', backToDefault);
 
-    function applyFilters () {
+    function applyFilters (index = 0) {
         let newProducts = filterByPrice(products);
         newProducts = filterByBrand(newProducts);
         newProducts = filterByTitle(newProducts);
         if (!newProducts.length) {
             getElement('.products').innerHTML = '<p class="no-products">Sorry, but there are no such products &#128560;</p>';
+            pagination.hide();
+        } else if (newProducts.length > amounPerPage) {
+            pagination.paginate(newProducts, index);
         } else {
-            if (newProducts.length > 9) {
-                pagination.paginate(newProducts);
-            } else {
-                displayProducts(newProducts);
-                pagination.hide();
-            }
+            displayProducts(newProducts);
+            pagination.hide();
         }
         trackResetBtn();
+        saveFiltersState(index);
     }
 
     function filterByPrice (products) {
@@ -120,6 +123,32 @@ const setFilters = (products) => {
             areFiltersChanged = true;
         }
         areFiltersChanged ? resetBtn.classList.add('active') : resetBtn.classList.remove('active');
+    }
+
+    function saveFiltersState (step) {
+        session.filters = [];
+        [...getElement('.filters').querySelectorAll('input, .filter-btns > .active')].forEach(elem => {
+            if (elem.classList.contains('active')) {
+                session.filters.push({brand: elem.textContent})
+            } else {
+                const {id, value} = elem;
+                session.filters.push({id, value});
+            }
+        });
+        setSession('products', {...session, step});
+    }
+
+    function restoreFiltersState () {
+        [...getElement('.filters').querySelectorAll('input, .filter-btns')].forEach(elem => {
+            if (elem.id) {
+                const filter = session.filters.find(item => item.id === elem.id);
+                elem.value = filter.value;
+            } else {
+                const filter = session.filters.find(item => item.brand);
+                const brand = [...elem.children].find(item => item.textContent === filter.brand);
+                setActiveBrand(brand);
+            }
+        });
     }
 };
 

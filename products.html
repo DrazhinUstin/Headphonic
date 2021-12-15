@@ -69,14 +69,14 @@
             <div class="filters">
                 <h4>Search:</h4>
                 <form class="search-form" onsubmit="return false">
-                    <input type="text" class="search-input" placeholder="Product">
+                    <input type="text" id="title-filter" class="search-input" placeholder="Product">
                 </form>
                 <h4>Brands:</h4>
                 <div class="filter-btns"></div>
                 <h4>Price range:</h4>
                 <form class="price-form">
-                    <span>$</span><input type="number" class="price-input"> &mdash;
-                    <span>$</span><input type="number" class="price-input">
+                    <span>$</span><input type="number" id="min-price-filter" class="price-input"> &mdash;
+                    <span>$</span><input type="number" id="max-price-filter" class="price-input">
                 </form>
                 <a href="#" class="button" id="reset-filters-btn">Reset filters</a>
             </div>

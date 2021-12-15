@@ -6,6 +6,14 @@ const setStorageItem = (key, item) => {
 const getStorageItem = (key) => {
     return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
 };
+// Set to session storage
+const setSession = (key, item) => {
+    sessionStorage.setItem(key, JSON.stringify(item));
+};
+// Get from session storage
+const getSession = (key) => {
+    return sessionStorage.getItem(key) ? JSON.parse(sessionStorage.getItem(key)) : {};
+};
 // Format price
 const formatPrice = (value) => {
     return new Intl.NumberFormat('en-US', {
@@ -56,4 +64,4 @@ const displayError = (key) => {
         </div>`;
 };
 
-export {setStorageItem, getStorageItem, formatPrice, getElement, getElements, hidePreloader, displayError};
+export {setStorageItem, getStorageItem, setSession, getSession, formatPrice, getElement, getElements, hidePreloader, displayError};
