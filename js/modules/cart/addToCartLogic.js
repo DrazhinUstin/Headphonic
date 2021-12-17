@@ -2,7 +2,7 @@ import { getElement, setStorageItem } from "../utils.js";
 
 const addToCartLogic = (cart, product) => {
     // DOM elements
-    const addToCartBtn = getElement('.red.button');
+    const addToCartBtn = getElement('#add-to-cart-btn');
     const amountBtnsDOM = getElement('.product-amount-btns');
     const amountDOM = getElement('.product-amount');
     // Check if product is already in cart

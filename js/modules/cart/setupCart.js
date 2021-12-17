@@ -2,7 +2,7 @@ import {getElement, getElements, formatPrice, setStorageItem, displayError} from
 
 const setupCart = (cart) => {
     // Clear cart
-    getElement('.clear-cart-btn').addEventListener('click', event => {
+    getElement('#clear-cart-btn').addEventListener('click', event => {
         event.preventDefault();
         cart = [];
         displayError('empty_cart');

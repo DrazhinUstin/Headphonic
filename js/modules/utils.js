@@ -58,9 +58,9 @@ const displayError = (key) => {
     const {message, image, link: {href, text}} = error;
     getElement('.section.center').innerHTML = `
         <div class="error-wrapper">
-            <h2>${message}</h2>
+            <h2 style="font-style: italic">${message}</h2>
             <img src="./images/${image}.svg" alt="${image}" />
-            <a href="${href}" class="red button">${text}</a>
+            <a href="${href}" class="red btn">${text}</a>
         </div>`;
 };
 

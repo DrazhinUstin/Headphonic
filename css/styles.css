@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,700;1,500;1,700&display=swap');
 
 /************************************************** GLOBAL STYLES **************************************************/
 
@@ -55,6 +55,16 @@ a {
 img {
     display: block;
 }
+img[alt="UFO"] {
+    width: 15rem;
+}
+img[alt="empty_box"] {
+    width: 10rem;
+}
+img[alt="rocket"] {
+    width: 10rem;
+    transform: rotate(-45deg);
+}
 button {
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
@@ -83,9 +93,13 @@ input[type='number'] {
     width: 90vw;
     margin: 0 auto;
 }
-.btn-wrapper {
-    margin: 4rem 0;
+.wrapper-center {
+    display: grid;
+    place-items: center;
+    grid-gap: 2rem;
+    margin-top: 4rem;
     text-align: center;
+    font-size: 1.2rem;
 }
 .error-wrapper {
     display: grid;
@@ -93,27 +107,47 @@ input[type='number'] {
     grid-gap: 4rem;
     text-align: center;
 }
-.error-wrapper img {
-    width: 10rem;
-    height: 10rem;
-}
-.btns-container {
+.btn-container {
     display: flex;
     justify-content: space-between;
 }
-.button {
+.btn {
     display: inline-block;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-2);
     background-color: var(--purple);
     color: var(--white);
     box-shadow: var(--shadow);
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: var(--spacing);
     transition: var(--ease-trans);
 }
-.button:hover {
+.btn:hover {
     transform: scale(1.1);
+}
+.text-link {
+    position: relative;
+    display: inline-block;
+    margin: 0 0.2rem;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: var(--spacing);
+}
+.text-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--transp-red);
+    transition: var(--ease-trans);
+}
+.text-link:hover::before {
+    left: unset;
+    right: 0;
+    width: 100%;
 }
 .red {
     background-color: var(--red);
@@ -249,7 +283,7 @@ nav {
 }
 .nav-menu {
     display: flex;
-    column-gap: 2rem;
+    column-gap: 1.5rem;
     z-index: 100;
 }
 .nav-menu a {
@@ -315,7 +349,7 @@ nav {
     }
     .nav-menu a {
         opacity: 0;
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
     .open-cart-btn-wrapper {
         margin-right: 0.5rem;
@@ -341,7 +375,7 @@ nav {
         height: 1.6rem;
     }
     .nav-menu a {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
 }
 
@@ -899,6 +933,7 @@ nav {
 .cart-total h3, .cart-total h4 {
     display: grid;
     grid-template-columns: auto 7rem;
+    font-style: italic;
 }
 .cart-total h4 {
     margin-bottom: 1.5rem;
@@ -906,6 +941,7 @@ nav {
 .cart-total h3 {
     padding-top: 1.5rem;
     border-top: 1px solid var(--orange);
+    font-size: 1.2rem;
 }
 .cart-total span {
     text-align: right;
@@ -958,27 +994,6 @@ nav {
 .text-content p {
     margin-bottom: 1rem;
 }
-.text-content a {
-    position: relative;
-    margin: 0 0.2rem;
-    color: var(--red);
-    letter-spacing: var(--spacing);
-}
-.text-content a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: var(--transp-red);
-    transition: var(--ease-trans);
-}
-.text-content a:hover::before {
-    left: unset;
-    right: 0;
-    width: 100%;
-}
 .benefits {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
@@ -1026,12 +1041,88 @@ nav {
 .brands {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-    grid-gap: 2rem;
     place-items: center;
+    grid-gap: 2rem;
+    margin-top: 4rem;
 }
 .brands img {
     width: 100%;
     height: auto;
+}
+
+/********************************** PAGE - FAQ **********************************/
+
+.accordion {
+    margin: 4rem 0;
+}
+.accordion li {
+    border-bottom: 1px solid var(--grey);
+}
+.accordion li:first-child {
+    border-top: 1px solid var(--grey);
+}
+.accordion .heading {
+    position: relative;
+    padding: 1rem 0;
+    cursor: pointer;
+}
+.accordion .heading p {
+    padding-left: 2rem;
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+.plus-minus {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.plus-minus span {
+    width: 1rem;
+    height: 2px;
+    display: block;
+    background-color: var(--orange);
+    transition: var(--ease-trans);
+}
+.plus-minus span::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(90deg);
+    background-color: inherit;
+    transition: inherit;
+}
+.active .plus-minus span {
+    transform: rotate(180deg);
+}
+.active .plus-minus span::after {
+    transform: rotate(-180deg);
+}
+.accordion .content {
+    height: 0;
+    padding-left: 2rem;
+    overflow-y: hidden;
+    opacity: 0;
+    transition: var(--ease-trans);
+}
+.accordion .active .content {
+    opacity: 1;
+}
+.accordion .content > article {
+    padding-bottom: 1rem;
+    font-style: italic;
+}
+.accordion .content p:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 400px) {
+    .accordion .heading p {
+        font-size: 1rem;
+    }
+    .accordion .content p {
+        font-size: 0.9rem;
+    }
 }
 
 /************************************************** FOOTER **************************************************/
@@ -1046,7 +1137,9 @@ footer .logo {
 }
 .footer-menu {
     display: flex;
+    flex-flow: row wrap;
     justify-content: center;
+    row-gap: 1rem;
 }
 .footer-menu a {
     color: var(--white);
@@ -1100,12 +1193,15 @@ footer p {
     letter-spacing: var(--spacing);
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .footer-menu a {
         padding: 0 0.5rem;
-        font-size: 1rem;
+        letter-spacing: var(--spacing);
     }
-    footer p {
+}
+
+@media screen and (max-width: 400px) {
+    .footer-menu a, footer p {
         font-size: 1rem;
     }
 }
