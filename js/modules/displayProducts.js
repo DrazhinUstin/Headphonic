@@ -1,9 +1,6 @@
 import {getElement, formatPrice} from './utils.js';
 
-const displayProducts = (products) => {
-    // Products container
-    const productsDOM = getElement('.products');
-    // Add products to DOM
+const displayProducts = (products, productsDOM = getElement('.products')) => {
     productsDOM.innerHTML = products.map(product => {
         const {id, title, price, images} = product;
         return `<article class="product">

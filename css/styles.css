@@ -466,11 +466,11 @@ nav {
     width: 100%;
     display: flex;
     justify-content: center;
+    column-gap: 1rem;
 }
 .slider-circles > * {
     width: 1rem;
     height: 1rem;
-    margin: 0 0.5rem;
     border-radius: 50%;
     background-color: var(--white);
     opacity: 0.5;
@@ -579,6 +579,73 @@ nav {
     display: inline-block;
     padding-bottom: 0.4rem;
     border-bottom: 5px solid var(--purple);
+}
+
+/********************************** FEATURED **********************************/
+
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+.carousel {
+    display: flex;
+    transition: var(--ease-trans);
+}
+.carousel > * {
+    flex: 0 0 calc(100% / 3);
+    padding: 0 0.5rem;
+}
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+.carousel-controls > * {
+    padding: 0.25rem;
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--purple);
+    color: var(--white);
+    font-size: 1.5rem;
+    line-height: 1;
+    pointer-events: auto;
+}
+.carousel-stages {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-top: 2rem;
+}
+.carousel-stages > * {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--grey);
+    cursor: pointer;
+    transition: var(--ease-trans);
+}
+.carousel-stages > *.active {
+    background-color: var(--purple);
+    pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+    .carousel > * {
+        flex: 0 0 50%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .carousel > * {
+        flex: 0 0 100%;
+    }
 }
 
 /********************************** PRODUCTS **********************************/
