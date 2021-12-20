@@ -6,14 +6,14 @@ import setHeroSlider from './modules/setHeroSlider.js';
 import setupPage from './modules/setupPage.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+    setHeroSlider();
+    setupPage();
     const store = await fetchProducts();
     const featured = store.filter(product => product.selected);
     const cart = getStorageItem('cart');
     setCarousel(featured);
     countCartItems(cart);
     setStorageItem('store', store);
-    setHeroSlider();
-    setupPage();
 });
 
 window.addEventListener('load', hidePreloader);
